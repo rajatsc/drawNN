@@ -136,5 +136,9 @@ dmypy.json
 
 
 #custom folder
-/data/**
-/saved/**
+data/*
+saved/*
+
+#exception to the rule
+!data/.gitkeep
+!saved/.gitkeep
