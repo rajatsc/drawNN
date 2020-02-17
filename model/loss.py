@@ -1,6 +1,6 @@
 import torch.nn.functional as F
 
-def nll_loss(output, target):
+def cross_entropy_loss(output, target):
 	"""
 	The input is expected to contain scores for each class.
 	input has to be a 2D Tensor of size (minibatch, C).
@@ -12,12 +12,5 @@ def nll_loss(output, target):
 	CrossEntropyLoss takes a 1D tensor. I had to squeeze
 	 the last dimension with target.squeeze(1) so it becomes a 1D tensor of size (batch, ).
 	"""
-	#print(output.shape)
-	#print(output[0])
 	target = target.squeeze(1)
-	#print(target.shape)
-	#print(target[0])
-
-	#print(output.type())
-	#print(target.type())
 	return F.cross_entropy(output, target)
