@@ -2,13 +2,12 @@ import torch
 import torch.nn as nn
 import math
 import numpy as np
+from base import BaseModel
 
 
-
-
-class drawNNModel(nn.Module):
+class drawNNModel(BaseModel):
 	def __init__ (self, input_size=28, num_classes = 25):
-		super(drawNNModel, self).__init__()
+		super().__init__()
 		self.num_classes = num_classes
 		self.conv1 = nn.Sequential(nn.Conv2d(1, 32, 5, bias=False), nn.ReLU(inplace=True), nn.MaxPool2d(2, 2))
 		self.conv2 = nn.Sequential(nn.Conv2d(32, 64, 5, bias=False), nn.ReLU(inplace=True), nn.MaxPool2d(2, 2))
@@ -27,11 +26,3 @@ class drawNNModel(nn.Module):
 		output = self.fc2(output)
 		output = self.fc3(output)
 		return output
-		
-	def __str__(self):
-		"""
-		Model prints with number of trainable parameters
-		"""
-		model_parameters = filter(lambda p: p.requires_grad, self.parameters())
-		params = sum([np.prod(p.size()) for p in model_parameters])
-		return super().__str__() + '\nTrainable parameters: {}'.format(params)
