@@ -55,7 +55,6 @@ class DrawNNDataset(data.Dataset):
 		#print(np.amax(data))
 		
 		numpy_label = np.array([class_index])
-		#print(numpy_label.shape)
 		label = torch.from_numpy(numpy_label)
 		#print(label)
 		#print(data)
