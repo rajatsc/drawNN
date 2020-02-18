@@ -3,7 +3,7 @@ import torch
 import torch.utils.data as data
 import numpy as np
 
-class DrawNNDataset(data.Dataset):
+class myDataset(data.Dataset):
 
 	def __init__(self, data_dir, train, transform=None):
 		self.classes = ["airplane", "apple", "axe", "bed", "bicycle", "boomerang", "car", "ear", "eye", "fan", "flower",
@@ -49,22 +49,11 @@ class DrawNNDataset(data.Dataset):
 		else:
 			sample_index = self.samples + index%self.samples
 		data = np.load(full_file_path)[sample_index].reshape(28, 28, 1)
-		#print(data.shape)
-		
-		#print(data.shape)
-		#print(np.amax(data))
 		
 		numpy_label = np.array([class_index])
 		label = torch.from_numpy(numpy_label)
-		#print(label)
-		#print(data)
-		#print(dir(data))
-		#print(data.dtype)
+		
 		if self.transform:
 			data = self.transform(data)
-
-		#print(dir(data))
-		#print(data.type())
-		#print(data.shape)
 
 		return (data, label)

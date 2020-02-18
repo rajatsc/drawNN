@@ -1,8 +1,8 @@
 from torchvision import datasets, transforms
 from base import BaseDataLoader
-from dataset import DrawNNDataset
+from dataset import myDataset
 
-class DrawNNDataLoader(BaseDataLoader):
+class myDataLoader(BaseDataLoader):
 	"""
 	MNIST data loading demo using BaseDataLoader
 	"""
@@ -10,14 +10,12 @@ class DrawNNDataLoader(BaseDataLoader):
 		
 		#transform is a list of transformation object
 
-
-
 		transform = transforms.Compose([
-			transforms.ToTensor(),
+			transforms.ToTensor(), #ToTensor() scales the values between 0 to 1
 			#transforms.Normalize(mean = [0.1307], std = [0.3081])
 		])
 		self.data_dir = data_dir
 		
 		#initializing custom dataset
-		self.dataset = DrawNNDataset(self.data_dir, train=training, transform=transform)
+		self.dataset = myDataset(self.data_dir, train=training, transform=transform)
 		super().__init__(self.dataset, batch_size, shuffle, validation_split, num_workers)

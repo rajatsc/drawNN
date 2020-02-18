@@ -3,11 +3,11 @@
     "n_gpu": 0,
 
     "arch": {
-        "type": "drawNNModel",
+        "type": "mySimpleModel",
         "args": {}
     },
     "data_loader": {
-        "type": "DrawNNDataLoader",
+        "type": "myDataLoader",
         "args":{
             "data_dir": "data/numpy_bitmap",
             "batch_size": 16,
